@@ -1,158 +1,205 @@
-# CineBlaze
+<div align="center">
 
-A Nothing-inspired film & series discovery platform. Browse, rate, and track films and series powered by [TMDB](https://www.themoviedb.org/), with [Supabase](https://supabase.com/) backing auth, watchlists, lists, ratings, and viewing history.
+# ◈ CINEBLAZE ◈
 
-> Live demo: [ntblaze.netlify.app](https://ntblaze.netlify.app) · Repo: [github.com/AMSN25/Nothing-Blaze](https://github.com/AMSN25/Nothing-Blaze)
+### *A Nothing-inspired film & series discovery platform.*
 
----
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=white)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev)
+[![Supabase](https://img.shields.io/badge/Supabase-Auth%20%2B%20DB-3FCF8E?style=flat-square&logo=supabase&logoColor=white)](https://supabase.com)
+[![TMDB](https://img.shields.io/badge/TMDB-Catalogue-01B4E4?style=flat-square&logo=themoviedatabase&logoColor=white)](https://www.themoviedb.org)
+[![License](https://img.shields.io/badge/License-MIT-black?style=flat-square)](#license)
 
-## Features
+<br>
 
-### Discovery
-- **Home** — hero carousel, trending titles, mood-based grid, category rows (Movies, Web Series, Anime), editorial focus, stats, newsletter
-- **Films / Series / Anime** — filterable, sortable catalogues with genre chips, provider filters, sort options, pagination
-- **People** — popular actors/directors with profile pages and filmography
-- **Search** — global search overlay (`Cmd+K` / `/`) with instant results
-- **Platforms** — streaming service directory with region support
+*Browse. Rate. Track. Resume.*
 
-### Title details
-- Metadata (poster, backdrop, rating, runtime, genres, tagline, overview, status, language, vote count), cast, seasons & episodes (TV), similar titles
-- **Ratings & reviews** — public read, own-write (1–10 with written reviews and aggregate score)
-- **Continue Watching** — resume from viewing history with progress tracking
+<br>
 
-### User (Supabase-backed)
-- Email/password auth + profile (name, email, avatar)
-- **Watchlist** — guests use localStorage; signed-in users sync to Supabase
-- **Custom lists** — create, rename, delete, add/remove titles, drag-to-reorder
-- **Viewing history** — auto-recorded on playback, with estimated progress
-- **Admin panel** — account overview, per-user list/history counts, maintenance toggle
-- **Maintenance mode** — non-admins see a maintenance page; admins bypass; `/login` and `/signup` stay reachable
-
-### Playback
-- Embedded player with season/episode selector for series
-- Progress tracked (wall-clock time vs. runtime) and saved on interval, tab-hide, and close
-- Resume via `?resume=s1e2` deep link
+</div>
 
 ---
 
-## Tech stack
+## ✦ What is CineBlaze?
 
-| Layer | Choice |
-|---|---|
-| Framework | React 19 + TypeScript |
-| Build | Vite 8 (rolldown) |
-| Routing | React Router 7 |
-| Styling | Single design-system stylesheet (`src/index.css`) — Nothing-inspired, dark-only |
-| Icons | lucide-react |
-| Auth & data | Supabase (Auth + Postgres + RLS) |
-| Catalogue | TMDB API |
-| Lint | oxlint |
-| Desktop (optional) | Tauri 2 |
+A dark, minimal, **Nothing-inspired** discovery platform for films and series. Powered by the TMDB catalogue, backed by Supabase for real auth, watchlists, lists, ratings, and viewing history — all wrapped in a single-file design system that breathes.
+
+> Built for people who want their movie app to feel like a piece of hardware.
 
 ---
 
-## Quick start
+## ✦ Features
 
-### Prerequisites
-- Node.js 20+
-- A [Supabase](https://supabase.com/) project
-- A [TMDB](https://www.themoviedb.org/settings/api) API key
+<table>
+<tr>
+<td width="50%">
 
-### Setup
+### 🔍 Discovery
+- Hero carousel + trending
+- Mood-based discovery grid
+- Films / Series / Anime catalogues
+- Genre, sort & provider filters
+- People directory + filmography
+- Global search (`⌘K` / `/`)
+- Platforms by region
+
+</td>
+<td width="50%">
+
+### 🎬 Title details
+- Rich metadata & cast
+- Seasons & episodes (TV)
+- Similar titles
+- Ratings & reviews (public read)
+- Continue Watching with resume
+- Embedded player
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 👤 User (Supabase)
+- Email/password auth
+- Profile management
+- Watchlist (guest → localStorage, signed-in → Supabase)
+- Custom lists with drag-reorder
+- Viewing history + progress
+- Admin panel & maintenance mode
+
+</td>
+<td width="50%">
+
+### ⚡ Under the hood
+- React 19 + TypeScript
+- Vite 8 (rolldown)
+- React Router 7
+- Single design system (`index.css`)
+- RLS-secured Postgres
+- TMDB API client with LRU cache
+- oxlint
+
+</td>
+</tr>
+</table>
+
+---
+
+## ✦ Quick start
 
 ```bash
 git clone https://github.com/AMSN25/Nothing-Blaze.git
 cd Nothing-Blaze
 npm install
-cp .env.example .env
-# fill in VITE_TMDB_API_KEY, VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY
+cp .env.example .env   # add your keys
 npm run dev
 ```
 
-Dev server runs on `http://localhost:3000` (or `3100` depending on how you start it).
+Open **http://localhost:3000** and start exploring.
 
 ---
 
-## Environment variables
+## ✦ Environment
 
-| Variable | Description |
+| Variable | What it is |
 |---|---|
-| `VITE_TMDB_API_KEY` | TMDB API key (v3) |
+| `VITE_TMDB_API_KEY` | TMDB v3 API key |
 | `VITE_SUPABASE_URL` | Supabase project URL |
-| `VITE_SUPABASE_ANON_KEY` | Supabase publishable/anon key (never the `service_role` key) |
-
-See `.env.example` for placeholders. Never commit `.env`.
+| `VITE_SUPABASE_ANON_KEY` | Supabase publishable key *(never the service_role key)* |
 
 ---
 
-## Scripts
+## ✦ Scripts
 
-| Command | Description |
-|---|---|
-| `npm run dev` | Vite dev server |
-| `npm run build` | TypeScript check + production build → `dist/` |
-| `npm run lint` | oxlint |
-| `npm run preview` | Preview the production build |
-| `npm run tauri:build` | Desktop app (Tauri) |
+```bash
+npm run dev        # dev server
+npm run build      # type-check + production build → dist/
+npm run lint       # oxlint
+npm run preview    # preview production build
+npm run tauri:build # desktop app (Tauri)
+```
 
 ---
 
-## Project structure
+## ✦ Architecture
 
 ```
 src/
-├── components/       # Reusable UI (Nav, Hero, PosterCard, Player, SearchOverlay, …)
-├── pages/            # Route-level screens
-├── context/          # AuthContext, WatchlistProvider, MockStoreContext
-├── hooks/            # useAsync, useWatchlist
-├── lib/              # tmdb, supabase, supabaseData, streaming, maintenance, …
-├── index.css         # Complete design system
-└── App.tsx           # Routes + providers
+├── components/     # Nav, Hero, PosterCard, Player, SearchOverlay, …
+├── pages/          # Home, Details, Browse, People, Profile, Admin, …
+├── context/        # AuthContext, WatchlistProvider, MockStoreContext
+├── hooks/          # useAsync, useWatchlist
+├── lib/            # tmdb, supabase, supabaseData, streaming, maintenance
+├── index.css       # the entire design system
+└── App.tsx         # routes + providers
 
 supabase/
 ├── config.jsonc
-└── migrations/       # Schema, RLS, ratings, watch progress
+└── migrations/     # schema · RLS · ratings · watch progress
+```
+
+### Data flow
+
+```
+TMDB API ──► tmdb.ts (LRU cache) ──► useAsync ──► pages
+                                              │
+                                              ▼
+                              React Context (Auth · Watchlist · Store)
+                                              │
+                                              ▼
+                              Supabase (signed-in) · localStorage (guest)
 ```
 
 ---
 
-## Supabase setup
+## ✦ Supabase setup
 
-1. Create a Supabase project and grab the URL + anon key into `.env`.
-2. Link the CLI: `npx supabase link --project-ref <your-ref>`
-3. Push migrations: `npx supabase db push --remote`
-4. (Optional) seed demo admin: `admin@cineblaze.com` / `password` is seeded by `20261128000000_initial_schema.sql`.
+1. Create a Supabase project → copy URL + anon key into `.env`
+2. Link: `npx supabase link --project-ref <ref>`
+3. Push schema: `npx supabase db push --remote`
 
-### Schema
+**Tables:** `profiles` · `watchlist` · `lists` · `list_items` · `ratings` · `watch_history` · `site_settings`
 
-Tables: `profiles`, `watchlist`, `lists`, `list_items`, `ratings`, `watch_history`, `site_settings`.
-
-- RLS enabled on all tables; ratings are publicly readable, writes are own-only.
-- `profiles` auto-created via trigger on signup; admin role set by email.
-- Maintenance state lives in `site_settings` (key `maintenance`).
+- RLS on every table; ratings are public-read, writes are own-only
+- `profiles` auto-created on signup via trigger
+- Maintenance state lives in `site_settings (key = 'maintenance')`
+- Demo admin: `admin@cineblaze.com` / `password` (seeded in `20261128000000_initial_schema.sql`)
 
 ---
 
-## Deployment
+## ✦ Deployment
 
-The build output is a static SPA in `dist/` — deployable to any static host.
+Static SPA output in `dist/` — works on any static host.
 
-- **Coolify (self-hosted, recommended):** static-site resource, build command `npm run build`, publish dir `dist`, set the three `VITE_*` env vars, add your domain for auto-HTTPS.
-- **Any static host (Vercel, Netlify, Cloudflare Pages, GitHub Pages):** standard Vite SPA — ensure `/* → /index.html` fallback (see `public/_redirects`).
-
-> Note: Netlify's free tier credit limit can block deploys; see [Coolify](https://coolify.io) for a self-hosted alternative.
+- **Coolify (self-hosted):** static-site resource · build `npm run build` · publish `dist` · set `VITE_*` env vars · add domain for auto-HTTPS
+- **Vercel / Netlify / Cloudflare Pages / GitHub Pages:** standard Vite SPA — ensure `/* → /index.html` fallback
 
 ---
 
-## Known limitations
+## ✦ Known limitations
 
-- Progress tracking is an estimate (wall-clock time vs. runtime) because embedded sources expose no `currentTime`.
-- No test suite configured.
-- Client-only SPA (no SSR).
-- Dark theme only.
+- Progress tracking is an estimate (wall-clock vs. runtime — embedded sources expose no `currentTime`)
+- No test suite yet
+- Client-only SPA (no SSR)
+- Dark theme only
 
 ---
 
-## License
+## ✦ Roadmap
 
-No license file is currently included. Add one before distributing.
+- [ ] Real streaming integration (JustWatch)
+- [ ] Image optimization (Cloudinary/Imgix)
+- [ ] PWA manifest + service worker
+- [ ] Dark/light theme toggle
+- [ ] Unit & E2E tests (Vitest + Playwright)
+
+---
+
+<div align="center">
+
+**Made with ☕ and a lot of black pixels.**
+
+*Nothing-inspired. Everything functional.*
+
+</div>
