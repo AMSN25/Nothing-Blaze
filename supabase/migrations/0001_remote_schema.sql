@@ -1,0 +1,2 @@
+-- Placeholder for the existing remote migration history entry 0001.
+-- The full remote schema is maintained by Supabase; app migrations are additive.
